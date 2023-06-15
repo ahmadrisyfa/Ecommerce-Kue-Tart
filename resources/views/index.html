@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rincian Pembelian</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Rincian Pembelian</h1>
+
+    <p>Halo {{ $user->name }},</p>
+
+    <p>Berikut adalah rincian pembelian Anda:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Produk</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($checkout->products as $product)
+            <tr>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->quantity }}</td>
+                <td>{{ $product->price }}</td>
+                <td>{{ $product->quantity * $product->price }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total Harga:</td>
+                <td>{{ $checkout->total_price }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>
