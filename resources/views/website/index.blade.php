@@ -1,5 +1,15 @@
 @extends('template.website.dashboard')
 @section('content_website_index')
+<div class="container">
+
+@if(session()->has('berhasil'))
+<div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+    <i class="bi bi-check-circle me-1"></i>
+            {{ session('berhasil') }}
+</div>
+@endif 
+</div>
+
 @if ($dataslider)
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Slides -->

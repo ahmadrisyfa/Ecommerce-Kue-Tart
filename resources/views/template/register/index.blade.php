@@ -39,15 +39,30 @@
         @csrf
       <div class="form-group">
         <label for="name">Nama:</label>
-        <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan nama">
+        <input type="text" class="form-control @error('name')is-invalid @enderror" name="name" required id="name" placeholder="Masukkan nama">
+        @error('name')
+        <div class="invalid-feedback">
+          {{ $message }}
+        </div>  
+        @enderror
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email">
+        <input type="email" class="form-control @error('email')is-invalid @enderror" name="email" required id="email" placeholder="Masukkan email">
+        @error('email')
+        <div class="invalid-feedback">
+          {{ $message }}
+        </div>  
+        @enderror
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password">
+        <input type="password" class="form-control @error('password')is-invalid @enderror" name="password" required id="password" placeholder="Masukkan password">
+        @error('password')
+        <div class="invalid-feedback">
+          {{ $message }}
+        </div>  
+        @enderror
       </div>
       <button type="submit" class="btn btn-primary">Daftar</button>
       <a href="{{url('/login')}}">Sudah Punya Akun?</a>

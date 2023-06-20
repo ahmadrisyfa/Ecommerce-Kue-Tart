@@ -105,34 +105,37 @@
 
 </div>
 <script>
-  $(document).ready(function() {
-      $('#size').on('change', function() {
-          var size = $(this).val();
+  var hargaAwal = $data->harga ; // Harga awal dari $data->harga
 
-          // Kirim permintaan AJAX ke server Laravel
-          $.ajax({
-              url: '/get-harga/' + size,
-              type: 'GET',
-              success: function(response) {
-                  var harga = response.harga;
-                  $('#harga').text('Harga Ukuran Kue: ' + harga);
+  // Menampilkan harga awal pada input field dan elemen span
+  var hargaInput = document.getElementById('harga-input');
+  var hargaSpan = document.getElementById('harga-span');
+  hargaInput.value = hargaAwal;
+  hargaSpan.textContent = hargaAwal;
 
-                  var total = parseInt(harga) + parseInt($('#cek').val());
-                  $('#total').val(total);
+  document.getElementById('size_id').addEventListener('change', function() {
+      var sizeId = this.value; // Mengambil value id dari option yang dipilih
+
+      // Menggunakan Ajax untuk mengirim permintaan ke server
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  var harga = parseFloat(hargaAwal) + parseFloat(response.harga); // Menambahkan harga awal dengan harga yang baru
+                  hargaInput.value = harga; // Mengisi nilai input field harga dengan nilai yang baru
+                  hargaSpan.textContent = harga; // Menetapkan teks harga yang baru ke dalam elemen span
+              } else {
+                  console.error(xhr.status);
               }
-          });
-      });
+          }
+      };
 
-      $('#cek').on('input', function() {
-          var harga = parseInt($('#harga').text().split(':')[1]);
-          var total = harga + parseInt($(this).val());
-          $('#total').val(total);
-      });
-
-      // Pemanggilan awal saat halaman dimuat
-      $('#size').trigger('change');
+      xhr.open('GET', '/get-harga/' + sizeId); // Ganti '/get-harga/' dengan URL endpoint Anda
+      xhr.send();
   });
 </script>
+
 
 
 @endsection

@@ -22,17 +22,7 @@
                 <p>Jumlah: {{$value->quantity}}</p>
                 @if ($value->toppings)
                 <p>Toppings: {{$value->toppings}}</p>
-                @endif
-              {{-- <h2>N</h2>
-              <p>Deskripsi produk lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <h3>Harga: $99</h3>
-              <p>Jumlah: 3</p>
-              <h3>Total: $297</h3>
-              <p>Status: Dalam Pengiriman</p>
-              <h4>Alamat Pengiriman</h4>
-              <p>Jalan Raya No. 123, Kota, Negara</p>
-              <h4>Informasi Pembayaran</h4>
-              <p>Metode Pembayaran: Transfer Bank</p> --}}
+                @endif             
             </div>
           </div>        
           @endforeach
@@ -48,5 +38,5 @@
             <a href="{{url('riwayat-transaksi')}}" class="btn btn-primary">Kembali</a>
           </div>
         </div>
-    </div>
+</div>
 @endsection

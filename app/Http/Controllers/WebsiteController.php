@@ -143,7 +143,7 @@ class WebsiteController extends Controller
                 });
                 
             return redirect('terimakasih');
-        }
+    }
         public function terimakasih()
         {
             return view('website.terimakasih');

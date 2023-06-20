@@ -14,7 +14,12 @@
   <div class="row">
     <div class="col-lg-12">
         <div class="row">
-
+          @if(session()->has('berhasil'))
+          <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+              <i class="bi bi-check-circle me-1"></i>
+                      {{ session('berhasil') }}
+          </div>
+          @endif 
   <div class="col-xxl-4 col-md-6">
     <div class="card info-card sales-card">
       <div class="card-body">

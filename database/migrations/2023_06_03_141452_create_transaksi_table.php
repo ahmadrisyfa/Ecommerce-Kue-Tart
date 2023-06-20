@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('proses')->default('0')->comment('1=Sudah Di Konfirmasi,0=Menunggu Di Konfirmasi');
             $table->string('toppings')->nullable();
 
-
             $table->timestamps();
             $table->foreign('size_id')->references('id')->on('size')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');

@@ -23,10 +23,10 @@ class LoginController extends Controller
         
             $user = Auth::user();
             if ($user->admin == 1) {
-                return redirect()->intended('admin/dashboard');
+                return redirect()->intended('admin/dashboard')->with('berhasil','Berhasil Login');
             }
         
-            return redirect()->intended('/');
+            return redirect()->intended('/')->with('berhasil','Berhasil Login');
         }
         return back()->with('LoginError', 'Login gagal, Silahkan Ulangi Lagi');
     }

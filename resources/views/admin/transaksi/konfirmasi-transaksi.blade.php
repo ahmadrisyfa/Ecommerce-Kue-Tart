@@ -26,26 +26,19 @@
                           : {{$value->product->nama}}
                         </div>
                       </div>   
-                      {{-- <div class="row mb-3">
-                        <label for="inputText" class="col-sm-2 col-form-label">Harga</label>
-                        <div class="col-sm-10">
-                          : {{$value->product->harga}}
-                        </div>
-                      </div>   --}}
+                    
                       <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">Quantity</label>
                         <div class="col-sm-10">
                           : {{$value->quantity}}
                         </div>
                       </div>  
-                      {{-- @if ($value->size) --}}
                       <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">Size</label>
                         <div class="col-sm-10">
                           : {{$value->size->nama}}
                         </div>
                       </div>                          
-                      {{-- @endif --}}
                       @if ($value->toppings)
                       <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">Toppings</label>
