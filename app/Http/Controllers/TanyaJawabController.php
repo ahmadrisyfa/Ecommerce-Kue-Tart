@@ -25,6 +25,9 @@ class TanyaJawabController extends Controller
             'soal'=>'required',
             'jawaban'=>'required',
         ]);
+        if($request->jawaban){
+            $validatedData['jawaban'] =nl2br($request->jawaban);
+        }
         TanyaJawab::create($validatedData);       
         return redirect('admin/tanya-jawab')->with('berhasil','Data Telah Berhasil Di tambahkan!');
     }
@@ -40,8 +43,10 @@ class TanyaJawabController extends Controller
         'soal'=>'required',
         'jawaban'=>'required',
         ];
-
         $validatedData = $request->validate($rules);            
+        if($request->jawaban){
+            $validatedData['jawaban'] =nl2br($request->jawaban);
+        }
         TanyaJawab::Where('id',$id)
         ->update($validatedData);
         
@@ -56,5 +61,4 @@ class TanyaJawabController extends Controller
 
         return redirect('admin/tanya-jawab')->with('berhasil', 'Data Berhasil Di Hapus'); 
     }
-
 }

@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-6" style="text-transform:capitalize;">
           <h2>{{$data->nama}}</h2>
-          <p>{{$data->deskripsi}}</p>
+          <p>{!!$data->deskripsi!!}</p>
           <h6>Category: {{$data->category->nama}}</h6>
           <h4>@currency($data->harga)</h4>
           <form action="{{url('product/cart')}}" method="POST">
@@ -105,37 +105,34 @@
 
 </div>
 <script>
-  var hargaAwal = $data->harga ; // Harga awal dari $data->harga
+  $(document).ready(function() {
+      $('#size').on('change', function() {
+          var size = $(this).val();
 
-  // Menampilkan harga awal pada input field dan elemen span
-  var hargaInput = document.getElementById('harga-input');
-  var hargaSpan = document.getElementById('harga-span');
-  hargaInput.value = hargaAwal;
-  hargaSpan.textContent = hargaAwal;
+          // Kirim permintaan AJAX ke server Laravel
+          $.ajax({
+              url: '/get-harga/' + size,
+              type: 'GET',
+              success: function(response) {
+                  var harga = response.harga;
+                  $('#harga').text('Harga Ukuran Kue: ' + harga);
 
-  document.getElementById('size_id').addEventListener('change', function() {
-      var sizeId = this.value; // Mengambil value id dari option yang dipilih
-
-      // Menggunakan Ajax untuk mengirim permintaan ke server
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-              if (xhr.status === 200) {
-                  var response = JSON.parse(xhr.responseText);
-                  var harga = parseFloat(hargaAwal) + parseFloat(response.harga); // Menambahkan harga awal dengan harga yang baru
-                  hargaInput.value = harga; // Mengisi nilai input field harga dengan nilai yang baru
-                  hargaSpan.textContent = harga; // Menetapkan teks harga yang baru ke dalam elemen span
-              } else {
-                  console.error(xhr.status);
+                  var total = parseInt(harga) + parseInt($('#cek').val());
+                  $('#total').val(total);
               }
-          }
-      };
+          });
+      });
 
-      xhr.open('GET', '/get-harga/' + sizeId); // Ganti '/get-harga/' dengan URL endpoint Anda
-      xhr.send();
+      $('#cek').on('input', function() {
+          var harga = parseInt($('#harga').text().split(':')[1]);
+          var total = harga + parseInt($(this).val());
+          $('#total').val(total);
+      });
+
+      // Pemanggilan awal saat halaman dimuat
+      $('#size').trigger('change');
   });
 </script>
-
 
 
 @endsection

@@ -30,10 +30,12 @@ class ProductController extends Controller
             'deskripsi'=>'required',
             'gambar'=>'image|required',
         ]);
+        if($request->deskripsi){
+            $validatedData['deskripsi'] =nl2br($request->deskripsi);
+        }
         $validatedData['gambar']= $request->file('gambar')->store('img-product');
         Product::create($validatedData);       
         return redirect('admin/product')->with('berhasil','Data Telah Berhasil Di tambahkan!');
-        
     }
     public function show($id)
     {
@@ -65,12 +67,14 @@ class ProductController extends Controller
             }
             $validatedData['gambar'] = $request->file('gambar')->store('img-product');
         }
+        if($request->deskripsi){
+            $validatedData['deskripsi'] =nl2br($request->deskripsi);
+        }
         Product::Where('id',$id)
         ->update($validatedData);
         
         return redirect('admin/product')->with('berhasil','Data Berhasil Di Update');
     }
-
     public function destroy(product $product)
     {
         

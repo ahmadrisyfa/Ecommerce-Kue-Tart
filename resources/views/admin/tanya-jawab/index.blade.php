@@ -39,7 +39,7 @@
                           <tr>
                             <th>{{$loop->iteration}}</th>
                             <td>{{$value->soal}}</td>
-                            <td>{{$value->jawaban}}</td>
+                            <td>{!!$value->jawaban!!}</td>
                             <td>
                               <a href="{{ url('admin/tanya-jawab/'.$value->id.'/edit') }}" style="font-weight:bold" class="btn btn-info"><i class="bi bi-pencil-fill" style="margin-right:10px"></i>Edit</a>
                             </td>

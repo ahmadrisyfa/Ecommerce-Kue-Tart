@@ -61,7 +61,7 @@
                           <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Deskripsi</label>
                             <div class="col-sm-10">
-                              <textarea class="form-control" name="deskripsi" style="height: 100px">{{$data->deskripsi}}</textarea>
+                              <textarea class="form-control" name="deskripsi" style="height: 100px">{!!$data->deskripsi!!}</textarea>
                             </div>
                           </div>                                                                                                   
                         <div class="row mb-3">                        

@@ -53,7 +53,7 @@
             @if ($dataproduct)    
             @foreach ($dataproduct as $value)
                 
-            <div class="col-md-4">
+            {{-- <div class="col-md-4">
                 <div class="card mb-3" style="height:390px;overflow:hidden">
                     <div class="card-body">
                         <img src="{{ asset('storage/'.$value->gambar) }}" style="height: 150px;overflow:hidden" alt="Product 1" class="card-img">
@@ -67,14 +67,27 @@
                         <p class="card-text font-weight-bold">{{$value->nama}}</p>
                     </div>
                     <div class="card-title" style="margin-left:20px">
-                        {{Illuminate\Support\Str::of($value->deskripsi)->words(30)}}
+                        {{ Str::limit(strip_tags($value->deskripsi), 80) }}
                     </div>
                     <div class="card-title" style="margin-left:20px">
                         <a href="{{url('product/'.$value->id.'/detail')}}" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">View<i
                                 class="bi bi-arrow-right" style="margin-left: 5px;font-size:20px;"></i> </a>
                     </div>
                 </div>
-            </div>  
+            </div>   --}}
+            <div class="col-sm-4" style="height:600px;overflow:hidden">
+                <div class="card p-2">
+                  <img src="{{ asset('storage/'.$value->gambar) }}" style="height: 300px;overflow:hidden" class="card-img-top" alt="Gambar Produk 1">
+                  <div class="card-body">
+                      <a href="{{url('product/'.$value->id.'/detail')}}" style="color:black">
+                    <h5 class="card-title">{{$value->nama}}</h5>
+                  </a>
+                    <p class="card-text">{{ Str::limit(strip_tags($value->deskripsi), 80) }}</p>
+                    <a href="{{url('product/'.$value->id.'/detail')}}" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">View<i
+                        class="bi bi-arrow-right" style="margin-left: 5px;font-size:20px;"></i> </a>
+                  </div>
+                </div>
+              </div>
             @endforeach         
             @else
 
@@ -99,7 +112,7 @@
                                 
                             <div class="question" onclick="toggleAnswer({{$value->id}})"><i style="margin-right: 5px;"
                                 class="bi bi-patch-plus-fill"></i>{{$value->soal}}</div>
-                                <div class="answer" id="answer{{$value->id}}">{{$value->jawaban}}</div>                                    
+                                <div class="answer" id="answer{{$value->id}}">{!!$value->jawaban!!}</div>                                    
                             @endforeach
                         </div>
 
@@ -125,8 +138,8 @@
                 <i class="bi bi-calendar-range icon-hubungi-kami"></i>
                 <h6 class="font-weight-bold">KANTOR KAMI</h6>
                 <p style="text-transform:capitalize">{{$value->alamat}}</p>
-                <p><a href="#" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Lihat di
-                        maps</a></p>
+                <p><a href="https://maps.app.goo.gl/8Yb7GbD8mDHbScFf9?g_st=iw" target="_blank" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Lihat di
+                    maps</a></p>
             </div>
         </div>
         <div class="col-md-4">
@@ -147,9 +160,8 @@
                 @else
                 <p style="color:#ab6a3e">{{$value->email}}</p>
                 @endif
-                <p><a href="#" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Instagram</a>
+                <p><a href="https://instagram.com/tart_tuns?igshid=MzRlODBiNWFlZA==" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Instagram</a>
                 </p>
-
             </div>
         </div>
         <div class="col-md-4">
@@ -158,7 +170,7 @@
                 <h6 class="font-weight-bold">CUSTOMER SERVICE</h6>
                 <p>Butuh bantuan kami? <br> Kami dengan senang hati <br> membantu Anda.</p>
 
-                <p><a href="#" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Chat via
+                <p><a href="https://wa.me/62895321217600" target="_blank" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Chat via
                         Whatsapp</a></p>
             </div>
         </div>
@@ -171,7 +183,7 @@
                     <i class="bi bi-calendar-range icon-hubungi-kami"></i>
                     <h6 class="font-weight-bold">KANTOR KAMI</h6>
                     <p>Jl. Jakarta, <br> Jakarta, Indonesia</p>
-                    <p><a href="#" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Lihat di
+                    <p><a href="https://maps.app.goo.gl/8Yb7GbD8mDHbScFf9?g_st=iw" target="_blank" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Lihat di
                             maps</a></p>
                 </div>
             </div>
@@ -180,10 +192,10 @@
                     <i class="bi bi-telephone icon-hubungi-kami"></i>
                     <h6 class="font-weight-bold">HUBUNGI KAMI DI</h6>
                     <b>
-                        <p>(000) - 9999 9999</p>
+                        <p>(+62) - 0895-3212-17600</p>
                     </b>
                     <p style="color:#ab6a3e">info@tarttuns.com</p>
-                    <p><a href="#" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Instagram</a>
+                    <p><a href="https://instagram.com/tart_tuns?igshid=MzRlODBiNWFlZA==" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Instagram</a>
                     </p>
 
                 </div>
@@ -194,7 +206,7 @@
                     <h6 class="font-weight-bold">CUSTOMER SERVICE</h6>
                     <p>Butuh bantuan kami? <br> Kami dengan senang hati <br> membantu Anda.</p>
 
-                    <p><a href="#" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Chat via
+                    <p><a href="https://wa.me/62895321217600" target="_blank" style="color:#ab6a3e;text-decoration: underline;font-weight: bold;">Chat via
                             Whatsapp</a></p>
                 </div>
             </div>
